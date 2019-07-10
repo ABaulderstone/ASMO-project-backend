@@ -7,7 +7,7 @@ const StaffSchema = new Schema({
     },
     
     avatar: {
-        url: String,
+        type: String,
         required: true,
         default: "" 
     }
