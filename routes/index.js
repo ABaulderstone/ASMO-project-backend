@@ -7,7 +7,8 @@ const passport = require("passport");
 
 router.get("/", (req, res) => res.send("Welcome to ASMO"));
 router.use("/auth", AuthRoutes);
-router.use("/restaurant", passport.authenticate("jwt", {session: false}), RestaurantRoutes);
+router.use("/restaurant", passport.authenticate("jwt", { session: false }), RestaurantRoutes);
+router.use("/customer", passport.authenticate("jwt", { session: false }), RestaurantRoutes);
 // router.use("/bookmarks",passport.authenticate("jwt", {session: false}), BookmarkRoutes)
 
 module.exports = router;
