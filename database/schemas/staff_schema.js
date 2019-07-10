@@ -3,15 +3,14 @@ const Schema = mongoose.Schema;
 const StaffSchema = new Schema({
     name: {
         type: String, 
-        required: true,
+        required: true
     },
-    role: {
-        type: String, 
+    
+    avatar: {
+        type: String,
         required: true,
-        default: ""
-        
+        default: "" 
     }
-
 });
 
 module.exports = StaffSchema;
