@@ -1,4 +1,5 @@
 const { Schema } = require("mongoose");
+const RestaurantSchema = require("./restaurant_schema");
 
 
 // Passport-Local Mongoose will add a username, hash and salt field to store the
