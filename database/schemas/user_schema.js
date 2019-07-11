@@ -1,4 +1,5 @@
 const { Schema } = require("mongoose");
+const RestaurantSchema = require("./restaurant_schema");
 
 
 // Passport-Local Mongoose will add a username, hash and salt field to store the
@@ -7,8 +8,17 @@ const { Schema } = require("mongoose");
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new Schema({
+    restaurants: [RestaurantSchema]
 });
 
-UserSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+const options = {
+    usernameField: "email", 
+    errorMessages: {
+        IncorrectPasswordError: 'Password or username are incorrect',
+        IncorrectUsernameError: 'Password or username are incorrect'
+    }
+}
+
+UserSchema.plugin(passportLocalMongoose, options );
 
 module.exports = UserSchema;
