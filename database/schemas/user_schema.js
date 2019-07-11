@@ -8,9 +8,17 @@ const RestaurantSchema = require("./restaurant_schema");
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new Schema({
-    // restaurants: [RestaurantSchema]
+    restaurants: [RestaurantSchema]
 });
 
-UserSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+const options = {
+    usernameField: "email", 
+    errorMessages: {
+        IncorrectPasswordError: 'Password or username are incorrect',
+        IncorrectUsernameError: 'Password or username are incorrect'
+    }
+}
+
+UserSchema.plugin(passportLocalMongoose, options );
 
 module.exports = UserSchema;

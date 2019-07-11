@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const StaffShcema = require("./staff_schema");
+const StaffSchema = require("./staff_schema");
 const CustomerSchema = require("./customer_schema");
 const ReviewSchema = require("./review_schema");
 const Schema = mongoose.Schema;
@@ -10,7 +10,7 @@ const RestaurantSchema = new Schema({
         required: true,
     },
 
-    staff: [StaffShcema],
+    staff: [StaffSchema],
     customers: [CustomerSchema],
     reviews: [ReviewSchema]
 
