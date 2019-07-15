@@ -1,5 +1,6 @@
 async function create(req, res, next) {
     req.user.staff.push(req.body);
+    console.log(req.body);
     try {
         await req.user.save();
         res.json(req.user.staff);

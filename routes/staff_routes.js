@@ -1,12 +1,13 @@
 const express = require("express");
 const { celebrate, Joi } = require("celebrate");
 const router = express.Router();
+const StaffController = require("./../controllers/staff_controller")
 
 router.post("/",  celebrate({
     body: {
         name: Joi.string().required(),
     }
-}));
+}),StaffController.create);
 
 router.put("/edit", celebrate({
     body: {
@@ -14,8 +15,10 @@ router.put("/edit", celebrate({
         
     }
 }));
-// Check with Alex on how to go about get reqeust for Staff
-router.get("/index")
+
+router.get("/", StaffController.index)
+
+
 // Check with Alex on how to go about detleting request for Staff
 router.delete("/delete")
 

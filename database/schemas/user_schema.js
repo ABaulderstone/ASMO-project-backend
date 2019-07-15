@@ -1,5 +1,4 @@
 const { Schema } = require("mongoose");
-const RestaurantSchema = require("./restaurant_schema");
 const mongoose = require("mongoose");
 const StaffSchema = require("./staff_schema");
 const CustomerSchema = require("./customer_schema");
@@ -15,6 +14,7 @@ const UserSchema = new Schema({
     resturantName: {  
         type: String, 
         required: true,
+        default: "Land of Smiles"
     },
     staff: [StaffSchema],
     customers: [CustomerSchema],
