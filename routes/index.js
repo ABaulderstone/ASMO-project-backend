@@ -8,7 +8,7 @@ const passport = require("passport");
 router.get("/", (req, res) => res.send("Welcome to ASMO"));
 router.use("/auth", AuthRoutes);
 router.use("/customer", passport.authenticate("jwt", { session: false }), CustomerRoutes);
-router.use("/staff", passport.authenticate("jwt", {session: false}), StaffRoutes);
+router.use("/staff", passport.authenticate("jwt", { session: false }), StaffRoutes);
 
 
 
