@@ -9,7 +9,7 @@ const StaffSchema = new Schema({
     avatar: {
         type: String,
         required: true,
-        default: "" 
+        default: "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" 
     }
 });
 
