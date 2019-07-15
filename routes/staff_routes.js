@@ -9,7 +9,7 @@ router.post("/",  celebrate({
     }
 }),StaffController.create);
 
-router.put("/edit/:id", celebrate({
+router.put("/:id", celebrate({
     body: {
         name: Joi.string().required(),
         

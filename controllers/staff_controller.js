@@ -13,16 +13,25 @@ function index(req, res) {
     return res.json(req.user.staff);
 }
 
-function update(req,res) {
-    const {id} = req.params;
-    console.log(id);
+async function update(req,res) {
+    const {id} = req.params;    
+    const staffMember = req.user.staff.id(id);
+    const {name} = req.body
+    staffMember.name = name;
+    try {
+        await req.user.save();
+        res.json(staffMember);
+    } catch( err ) {
+        next(err);
+    }
+
+
 
 }
 
 function show(req, res) {
     const {id} = req.params;    
     const staffMember = req.user.staff.id(id);
-    console.log(staffMember)
     return res.json(staffMember);
 
 }
