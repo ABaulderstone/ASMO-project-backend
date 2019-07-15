@@ -1,15 +1,12 @@
 const express = require("express");
 const { celebrate, Joi } = require("celebrate");
 const router = express.Router();
+const CustomerController = require("./../controllers/customer_controller")
 
 
-router.get("/", celebrate({
-    body: {
-        name: Joi.string().required()
-    }
-}));
+router.get("/", CustomerController.index);
 
-router.post("/create", celebrate({
+router.post("/", celebrate({
     body: {
         name: Joi.string().required(),
         phone: Joi.number().required(),
@@ -18,9 +15,12 @@ router.post("/create", celebrate({
         anniversary: Joi.date(),
         address: Joi.string(),
     }
-}));
+}), CustomerController.create);
 
-router.put("/edit", celebrate({
+
+router.get("/:id" , CustomerController.show);
+
+router.put("/:id", celebrate({
     body: {
         name: Joi.string().required(),
         phone: Joi.number().required(),
@@ -29,6 +29,6 @@ router.put("/edit", celebrate({
         anniversary: Joi.date(),
         address: Joi.string(),
     }
-}));
+}), CustomerController.update);
 
 module.exports = router;

@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ReviewSchema = new Schema({
 
-    bill: {
-        type: Number,
-        required: true,
-    },
+   
     foodRating: {
         type: Number,
         required: true,
@@ -24,8 +21,8 @@ const ReviewSchema = new Schema({
         type: Date,
         required: true,
         default: new Date()
-    },
-    staff: []
+    }
+
 
 });
 
