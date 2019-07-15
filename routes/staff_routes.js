@@ -22,6 +22,6 @@ router.get("/:id", StaffController.show)
 
 
 // Check with Alex on how to go about detleting request for Staff
-router.delete("/:id")
+router.delete("/:id", StaffController.destroy);
 
 module.exports = router;
