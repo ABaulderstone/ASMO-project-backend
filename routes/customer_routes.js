@@ -31,4 +31,6 @@ router.put("/:id", celebrate({
     }
 }), CustomerController.update);
 
+router.delete("/:id", CustomerController.destroy);
+
 module.exports = router;

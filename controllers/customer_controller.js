@@ -16,6 +16,10 @@ async function create(req, res, next) {
   async function update(req, res) {
     const { id } = req.params;
     const customer = req.user.customers.id(id);
+    const {name, phone, email} = req.body;
+    customer.name = name;
+    customer.phone = phone;
+    customer.email = email;
    
     try {
       await req.user.save();
@@ -27,13 +31,13 @@ async function create(req, res, next) {
   
   function show(req, res) {
     const { id } = req.params;
-    const customer = req.user.staff.id(id);
+    const customer = req.user.customers.id(id);
     return res.json(customer);
   }
   
    async function destroy(req, res) {
       const { id } = req.params;
-      const customer = req.user.staff.id(id);
+      const customer = req.user.customers.id(id);
       customer.remove();
       try {
           await req.user.save();
