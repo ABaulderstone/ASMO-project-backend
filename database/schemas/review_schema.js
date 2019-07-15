@@ -10,12 +10,12 @@ const ReviewSchema = new Schema({
     serviceRating: {
         type: Number,
         required: true,
-        default: 0
+
     },
 
     comment: {
         type: String,
-        required: true
+        required: false
     },
     date: {
         type: Date,
