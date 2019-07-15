@@ -13,11 +13,23 @@ function index(req, res) {
     return res.json(req.user.staff);
 }
 
-function edit(req,res) {
+function update(req,res) {
+    const {id} = req.params;
+    console.log(id);
+
+}
+
+function show(req, res) {
+    const {id} = req.params;    
+    const staffMember = req.user.staff.id(id);
+    console.log(staffMember)
+    return res.json(staffMember);
 
 }
 
 module.exports = {
     create,
-    index
+    index,
+    update,
+    show
 }

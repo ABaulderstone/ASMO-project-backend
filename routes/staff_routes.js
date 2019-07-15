@@ -9,17 +9,19 @@ router.post("/",  celebrate({
     }
 }),StaffController.create);
 
-router.put("/edit", celebrate({
+router.put("/edit/:id", celebrate({
     body: {
         name: Joi.string().required(),
         
     }
-}));
+}),StaffController.update);
 
 router.get("/", StaffController.index)
 
+router.get("/:id", StaffController.show)
+
 
 // Check with Alex on how to go about detleting request for Staff
-router.delete("/delete")
+router.delete("/:id")
 
 module.exports = router;
