@@ -1,5 +1,9 @@
 const { Schema } = require("mongoose");
 const RestaurantSchema = require("./restaurant_schema");
+const mongoose = require("mongoose");
+const StaffSchema = require("./staff_schema");
+const CustomerSchema = require("./customer_schema");
+const ReviewSchema = require("./review_schema");
 
 
 // Passport-Local Mongoose will add a username, hash and salt field to store the
@@ -8,14 +12,20 @@ const RestaurantSchema = require("./restaurant_schema");
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new Schema({
-    restaurants: [RestaurantSchema]
+    resturantName: {  
+        type: String, 
+        required: true,
+    },
+    staff: [StaffSchema],
+    customers: [CustomerSchema],
+    reviews: [ReviewSchema],
 });
 
 const options = {
     usernameField: "email", 
     errorMessages: {
-        IncorrectPasswordError: 'Password or username are incorrect',
-        IncorrectUsernameError: 'Password or username are incorrect'
+        IncorrectPasswordError: 'Incorrect username or password',
+        IncorrectUsernameError: 'Incorrect username or password'
     }
 }
 
