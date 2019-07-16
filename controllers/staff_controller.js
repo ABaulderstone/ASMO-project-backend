@@ -13,7 +13,7 @@ function index(req, res) {
   return res.json(req.user.staff);
 }
 
-async function update(req, res) {
+async function update(req, res, next) {
   const { id } = req.params;
   const staffMember = req.user.staff.id(id);
   const { name } = req.body;
@@ -26,10 +26,13 @@ async function update(req, res) {
   return res.json(staffMember);
 }
 
-function show(req, res) {
+function show(req, res, next) {
   const { id } = req.params;
   const staffMember = req.user.staff.id(id);
-  return res.json(staffMember);
+   if (staffMember) {
+     return res.json(staffMember);
+   }
+   next(err);
 }
 
  async function destroy(req, res) {
