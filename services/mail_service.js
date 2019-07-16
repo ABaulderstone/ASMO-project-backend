@@ -11,7 +11,7 @@ const sendConfirmMail = (email, name, resturantName) => {
         from: `admin@${resturantName}.com`,
         subject: `Thank you for registering ${name}`,
         text: `Hi ${name}`,
-        html: 
+       
     };
     sgMail.send(msg);
     console.log("we made it")
