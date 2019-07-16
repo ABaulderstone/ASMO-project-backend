@@ -18,7 +18,10 @@ async function create(req, res, next) {
   function show(req, res) {
     const { id } = req.params;
     const review = req.user.reviews.id(id);
+    if (review) {
     return res.json(review);
+    }
+    return res.status(404).json({_error: "Review not found"});
   }
   
  

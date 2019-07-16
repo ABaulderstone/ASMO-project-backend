@@ -26,13 +26,14 @@ async function update(req, res, next) {
   return res.json(staffMember);
 }
 
-function show(req, res, next) {
+function show(req, res) {
   const { id } = req.params;
   const staffMember = req.user.staff.id(id);
    if (staffMember) {
      return res.json(staffMember);
    }
-   next(err);
+   return res.status(404).json({_error: "Staff Member not found"})
+   
 }
 
  async function destroy(req, res) {
