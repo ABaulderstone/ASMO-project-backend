@@ -36,7 +36,7 @@ function show(req, res) {
    
 }
 
- async function destroy(req, res) {
+ async function destroy(req, res, next) {
     const { id } = req.params;
     const staffMember = req.user.staff.id(id);
     staffMember.remove();
