@@ -12,15 +12,20 @@ aws.config.update({
 
 const s3 = new aws.S3();
 
-const fileFilter = (req, file, cb) => {
+const fileFilter =  (req, file, cb) => {
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg') {
+  console.log(file);
     cb(null, true);
+
   } else {
     cb(new Error('Invalid file type, only JPEG and PNG is allowed!'), false);
   }
 }
 
 const upload = multer({
+  limits: {
+    fileSize: 1 * 1024 * 1024
+  },
   fileFilter,
   storage: multerS3({
     acl: 'public-read',
