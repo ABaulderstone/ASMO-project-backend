@@ -11,9 +11,9 @@ const MailerService = require("./../services/mail_service");
 router.get("/", (req, res) => res.send("Welcome to ASMO"));
 router.use("/auth", AuthRoutes);
 router.use("/customers", passport.authenticate("jwt", { session: false }), CustomerRoutes);
-router.use("/staff", passport.authenticate("jwt", {session: false}), StaffRoutes);
-router.use("/reviews", passport.authenticate("jwt", {session: false}), ReviewRoutes);
-router.use("/images", passport.authenticate("jwt", {session: false}), ImageRoutes);
+router.use("/staff", passport.authenticate("jwt", { session: false }), StaffRoutes);
+router.use("/reviews", passport.authenticate("jwt", { session: false }), ReviewRoutes);
+router.use("/images", passport.authenticate("jwt", { session: false }), ImageRoutes);
 
 
 
