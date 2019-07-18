@@ -13,7 +13,7 @@ function index(req, res) {
   return res.json(req.user.staff);
 }
 
-async function update(req, res) {
+async function update(req, res, next) {
   const { id } = req.params;
   const staffMember = req.user.staff.id(id);
   const { name } = req.body;
@@ -29,10 +29,14 @@ async function update(req, res) {
 function show(req, res) {
   const { id } = req.params;
   const staffMember = req.user.staff.id(id);
-  return res.json(staffMember);
+   if (staffMember) {
+     return res.json(staffMember);
+   }
+   return res.status(404).json({_error: "Staff Member not found"})
+   
 }
 
- async function destroy(req, res) {
+ async function destroy(req, res, next) {
     const { id } = req.params;
     const staffMember = req.user.staff.id(id);
     staffMember.remove();
