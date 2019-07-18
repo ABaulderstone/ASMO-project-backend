@@ -8,7 +8,8 @@ const passport = require("passport");
 router.post("/register", celebrate({
     body: {
         email: Joi.string().email().required(),
-        password: Joi.string().required()
+        password: Joi.string().required(),
+        confrimPassword: Joi.string().required()
     }
 }), AuthController.register);
 
