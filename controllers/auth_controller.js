@@ -2,7 +2,12 @@ const UserModel = require("./../database/models/user_model");
 const JWTService = require("./../services/jwt_service");
 
 function register(req, res, next) {
-    const { email, password } = req.body;
+    const { email, password, confrimPassword} = req.body;
+   console.log(req.body);
+    if (password !== confrimPassword) {
+        return next(new HTTPError(400, "Password and Confirm Password must match"));
+    }
+    
     const user = new UserModel({ email });
 
     UserModel.register(user, password, (err, user) => {
