@@ -10,8 +10,19 @@ async function create(req, res, next) {
 }
 
 function index(req, res) {
-  return res.json(req.user.customers);
+  const {phone:phoneNumber}=req.query;
+  const {customers} = req.user
+  if (phoneNumber){ 
+    const customer = customers.filter(obj => obj.phone == phoneNumber)
+
+    if (customer.length > 0) {
+      return res.json(customer);
+    }
+    return res.status(422).json({_error: "No Customer Found"});
+  }
+  return res.json(customers);
 }
+
 
 async function update(req, res, next) {
   const { id } = req.params;
@@ -51,10 +62,12 @@ async function destroy(req, res, next) {
   return res.json(req.user.customers);
 }
 
+
+
 module.exports = {
   create,
   index,
   update,
   show,
-  destroy
+  destroy, 
 };
