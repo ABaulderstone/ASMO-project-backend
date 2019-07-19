@@ -6,6 +6,10 @@ const CustomerController = require("./../controllers/customer_controller")
 
 router.get("/", CustomerController.index);
 
+router.get("/search/phone", celebrate({
+    body: { phone: Joi.number().required()}
+}), CustomerController.findCustomerByNumber)
+
 router.post("/", celebrate({
     body: {
         name: Joi.string().required(),
