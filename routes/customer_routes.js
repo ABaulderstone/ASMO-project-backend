@@ -6,6 +6,7 @@ const CustomerController = require("./../controllers/customer_controller")
 
 router.get("/", CustomerController.index);
 
+
 router.post("/", celebrate({
     body: {
         name: Joi.string().required(),
