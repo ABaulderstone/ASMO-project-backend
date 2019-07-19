@@ -10,7 +10,17 @@ async function create(req, res, next) {
 }
 
 function index(req, res) {
-  return res.json(req.user.customers);
+  const {phone:phoneNumber}=req.query;
+  const {customers} = req.user
+  if (phoneNumber){ 
+    const customer = customers.filter(obj => obj.phone == phoneNumber)
+
+    if (customer.length > 0) {
+      return res.json(customer);
+    }
+    return res.status(422).json({_error: "No Customer Found"});
+  }
+  return res.json(customers);
 }
 
 
@@ -52,16 +62,7 @@ async function destroy(req, res, next) {
   return res.json(req.user.customers);
 }
 
-async function findCustomerByNumber(req, res, mext) {
-  const {phone: phoneNumber} = req.body;
-  const {customers} = req.user;
-  const customer = customers.filter(obj => obj.phone == phoneNumber)
 
-  if (customer.length > 0) {
-    return res.json(customer);
-  }
-  res.send("No Customer Found");
-}
 
 module.exports = {
   create,
@@ -69,5 +70,4 @@ module.exports = {
   update,
   show,
   destroy, 
-  findCustomerByNumber
 };
