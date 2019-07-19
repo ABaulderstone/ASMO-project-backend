@@ -55,9 +55,8 @@ async function destroy(req, res, next) {
 async function findCustomerByNumber(req, res, mext) {
   const {phone: phoneNumber} = req.body;
   const {customers} = req.user;
-  console.log(phoneNumber, customers[0].phone, customers[0].phone === phoneNumber);
-  const customer = customers.filter(obj => obj.phone === phoneNumber)
-  console.log(customer.length);
+  const customer = customers.filter(obj => obj.phone == phoneNumber)
+
   if (customer.length > 0) {
     return res.json(customer);
   }
