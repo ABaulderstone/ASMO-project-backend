@@ -16,7 +16,8 @@ function index(req, res) {
 async function update(req, res, next) {
   const { id } = req.params;
   const staffMember = req.user.staff.id(id);
-  const { name } = req.body;
+  const { name, avatar } = req.body;
+  staffMember.avatar = avatar;
   staffMember.name = name;
   try {
     await req.user.save();
