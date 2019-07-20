@@ -23,7 +23,7 @@ async function update(req, res, next) {
   } catch (err) {
     next(err);
   }
-  return res.json(staffMember);
+  return res.json(req.user.staff);
 }
 
 function show(req, res) {
