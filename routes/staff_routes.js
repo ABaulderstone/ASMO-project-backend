@@ -6,12 +6,14 @@ const StaffController = require("./../controllers/staff_controller")
 router.post("/",  celebrate({
     body: {
         name: Joi.string().required(),
+        avatar: Joi.string()
     }
 }),StaffController.create);
 
 router.put("/:id", celebrate({
     body: {
         name: Joi.string().required(),
+        avatar: Joi.string()
         
     }
 }),StaffController.update);
