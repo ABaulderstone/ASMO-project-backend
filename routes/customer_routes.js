@@ -1,7 +1,8 @@
 const express = require("express");
 const { celebrate, Joi } = require("celebrate");
 const router = express.Router();
-const CustomerController = require("./../controllers/customer_controller")
+const CustomerController = require("./../controllers/customer_controller");
+const RegularExpressions = require("./../utils/regex");
 
 
 router.get("/", CustomerController.index);
@@ -10,7 +11,7 @@ router.get("/", CustomerController.index);
 router.post("/", celebrate({
     body: {
         name: Joi.string().required(),
-        phone: Joi.number().required(),
+        phone: Joi.string().regex(RegularExpressions.ausPhoneNumber).trim(),
         email: Joi.string().email().required(),
         dob: Joi.date(),
         anniversary: Joi.date(),
