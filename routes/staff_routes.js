@@ -23,8 +23,6 @@ router.get("/", StaffController.index)
 
 router.get("/:id", StaffController.show)
 
-
-
 router.delete("/:id", StaffController.destroy);
 
 module.exports = router;
