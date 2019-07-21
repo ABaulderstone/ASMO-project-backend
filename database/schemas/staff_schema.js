@@ -5,6 +5,11 @@ const StaffSchema = new Schema({
         type: String, 
         required: true
     },
+    duty: {
+        type: String,
+        required: true,
+        default: "Off"
+    },
     
     avatar: {
         type: String,
