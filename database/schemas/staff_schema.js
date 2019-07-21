@@ -5,7 +5,7 @@ const StaffSchema = new Schema({
         type: String, 
         required: true
     },
-    role: {
+    duty: {
         type: String,
         required: true,
         default: "Off"
