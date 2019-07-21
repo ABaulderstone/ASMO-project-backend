@@ -11,7 +11,7 @@ router.get("/", CustomerController.index);
 router.post("/", celebrate({
     body: {
         name: Joi.string().required(),
-        phone: Joi.string.regex(RegularExpressions.ausPhoneNumber).trim(),
+        phone: Joi.string().regex(RegularExpressions.ausPhoneNumber).trim(),
         email: Joi.string().email().required(),
         dob: Joi.date(),
         anniversary: Joi.date(),
