@@ -53,8 +53,19 @@ function show(req, res) {
 }
 
 async function setRoster(req, res, next) {
-  console.log(req.body);
+  const staffDuites = Object.entries(req.body);
+  staffDuites.forEach( (element) => {
+    const staffMember = req.user.staff.id(element[0]);
+    console.log(staffMember);
+    staffMember.duty = element[1];
+  });
 
+  try {
+    await req.user.save();
+  } catch (err) {
+    next(err);
+  }
+  return res.json(req.user.staff)
 
 }
 
