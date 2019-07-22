@@ -10,6 +10,8 @@ router.post("/",  celebrate({
     }
 }),StaffController.create);
 
+router.post("/duty", StaffController.setRoster);
+
 router.put("/:id", celebrate({
     body: {
         name: Joi.string().required(),
