@@ -13,7 +13,7 @@ function index(req, res) {
   const { phone: phoneNumber } = req.query;
   const { customers } = req.user;
   if (phoneNumber) {
-    const customer = customers.filter(obj => obj.phone == phoneNumber);
+    const customer = customers.filter(obj => obj.phone === phoneNumber);
 
     if (customer.length > 0) {
       return res.json(customer);
