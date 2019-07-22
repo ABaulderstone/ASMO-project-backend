@@ -52,10 +52,17 @@ function show(req, res) {
 
 }
 
+async function setRoster(req, res, next) {
+  console.log(req.body);
+
+
+}
+
 module.exports = {
   create,
   index,
   update,
   show,
-  destroy
+  destroy,
+  setRoster
 };
