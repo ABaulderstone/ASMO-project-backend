@@ -1,6 +1,10 @@
+const stats = require("./../services/statistics_service")
+
 async function create(req, res, next) {
-    req.user.reviews.push(req.body);
-    console.log(req.body);
+   req.user.reviews.push(req.body);
+    const review = req.user.reviews[req.user.reviews.length -1];
+    const {date, foodRating, serviceRating} = review;
+    stats.createOrUpdate(date, foodRating,serviceRating);
     try {
       await req.user.save();
     } catch (err) {
