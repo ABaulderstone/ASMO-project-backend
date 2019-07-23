@@ -28,11 +28,11 @@ const update = (date,kitchenRating, floorRating) => {
           console.log(err);
       }
       const {total:kitchenTotal, avg:kitchenAvg} = res.kitchen;
-      const newKitchenAvg = (kitchenTotal * kitchenAvg) + kitchenRating / (kitchenTotal + 1);
+      const newKitchenAvg = ((kitchenTotal * kitchenAvg) + kitchenRating) / (kitchenTotal + 1);
       res.kitchen.avg = newKitchenAvg;
       res.kitchen.total = kitchenTotal + 1;
       const {total:floorTotal, avg:floorAvg} = res.floor;
-      const newFloorAvg = (floorTotal * floorAvg) + floorRating / (floorTotal + 1);
+      const newFloorAvg = ((floorTotal * floorAvg) + floorRating) / (floorTotal + 1);
       res.floor.avg = newFloorAvg;
       res.floor.total = floorTotal + 1;
       res.save((err, model) => {
