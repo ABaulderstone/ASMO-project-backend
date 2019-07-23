@@ -24,7 +24,6 @@ function register(req, res, next) {
 // we have .user property on req because of passport local stategy middleware in routes
 function login(req,res,next) {
     const user = req.user;
-    console.log(user);
     const token = JWTService.generateToken(user);
     return res.json({ token });
 }
