@@ -5,7 +5,13 @@ const UserModel = require("./models/user_model")
 const staffArray = []
 const customersArray = []
 const reviewsArray = []
-for (let i = 0; i < 10; i++) {
+
+function randomIntFromInterval(min,max) // min and max included
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+for (let i = 0; i < 15; i++) {
     staffArray.push({
         name: faker.name.findName(),
         avatar: faker.image.avatar()
@@ -21,10 +27,13 @@ for (let i = 0; i < 50; i++) {
 
     for (let i = 0; i < 100; i++) {
         reviewsArray.push({
-        foodRating: Math.floor(Math.random() * 6) + 1,
-        serviceRating: Math.floor(Math.random() * 6) + 1,
+        foodRating: randomIntFromInterval(1,5),
+        serviceRating: randomIntFromInterval(1,5)
         comment: faker.lorem.paragraph(),
-        date: faker.date.between("2019-6-15", "2019-7-23")
+        date: faker.date.between("2019-6-15", "2019-7-23"),
+        kitchenStaff: [staffArray[randomIntFromInterval(0,2)], staffArray[randomIntFromInterval(3,5)], staffArray[randomIntFromInterval(6,7)],
+        floorStaff: [staffArray[randomIntFromInterval], staffArray[Math.floor(Math.random() * 9) + 1], staffArray[Math.floor(Math.random() * 9) + 1]]
+
         })
     };
 
