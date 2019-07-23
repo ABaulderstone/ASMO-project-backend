@@ -28,11 +28,11 @@ for (let i = 0; i < 50; i++) {
     for (let i = 0; i < 100; i++) {
         reviewsArray.push({
         foodRating: randomIntFromInterval(1,5),
-        serviceRating: randomIntFromInterval(1,5)
+        serviceRating: randomIntFromInterval(1,5),
         comment: faker.lorem.paragraph(),
         date: faker.date.between("2019-6-15", "2019-7-23"),
-        kitchenStaff: [staffArray[randomIntFromInterval(0,2)], staffArray[randomIntFromInterval(3,5)], staffArray[randomIntFromInterval(6,7)],
-        floorStaff: [staffArray[randomIntFromInterval], staffArray[Math.floor(Math.random() * 9) + 1], staffArray[Math.floor(Math.random() * 9) + 1]]
+        kitchenStaff: [staffArray[randomIntFromInterval(0,2)], staffArray[randomIntFromInterval(3,5)], staffArray[randomIntFromInterval(6,8)]],
+        floorStaff: [staffArray[randomIntFromInterval(9,10)], staffArray[randomIntFromInterval(11,12)], staffArray[randomIntFromInterval(13,15)]]
 
         })
     };
@@ -41,7 +41,7 @@ const User = new UserModel({
     staff: staffArray,
     customers: customersArray,
     reviews: reviewsArray,
-    email: "test@asmo.com"
+    email: "test2@asmo.com"
 });
 
 const passwordAndSave = async () => {
