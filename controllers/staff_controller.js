@@ -10,7 +10,19 @@ async function create(req, res, next) {
 }
 
 function index(req, res) {
-  return res.json(req.user.staff);
+  const {duty:role} = req.query;
+  const {staff} = req.user;
+  
+  if (role) { 
+    const staffByDuty = staff.filter(obj => obj.duty===role);
+    if (staffByDuty.length > 0) {
+      return res.json(staffByDuty)
+    }
+    return res.status(422).json({ _error: "Invalid Query" });
+
+  }
+
+  return res.json(staff);
 }
 
 async function update(req, res, next) {
