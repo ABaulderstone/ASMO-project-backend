@@ -21,6 +21,15 @@ const ReviewSchema = new Schema({
         type: Date,
         required: true,
         default: new Date()
+    },
+    kitchenStaff: {
+        type: Array,
+        required: true
+
+    },
+    floorStaff : {
+        type: Array,
+        required: true
     }
 
 

@@ -9,8 +9,9 @@ router.post("/", celebrate({
     body: {
         foodRating: Joi.number().integer().min(1).max(5).required(),
         serviceRating: Joi.number().integer().min(1).max(5).required(),
-        comment: Joi.string().max(250)
-
+        comment: Joi.string().max(250),
+        kitchenStaff: Joi.array(),
+        floorStaff: Joi.array()
     }
 }), 
  ReviewController.create)
