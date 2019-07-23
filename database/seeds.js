@@ -11,7 +11,7 @@ function randomIntFromInterval(min,max) // min and max included
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-for (let i = 0; i < 15; i++) {
+for (let i = 0; i < 20; i++) {
     staffArray.push({
         name: faker.name.findName(),
         avatar: faker.image.avatar()
@@ -32,7 +32,7 @@ for (let i = 0; i < 50; i++) {
         comment: faker.lorem.paragraph(),
         date: faker.date.between("2019-6-15", "2019-7-23"),
         kitchenStaff: [staffArray[randomIntFromInterval(0,2)], staffArray[randomIntFromInterval(3,5)], staffArray[randomIntFromInterval(6,8)]],
-        floorStaff: [staffArray[randomIntFromInterval(9,10)], staffArray[randomIntFromInterval(11,12)], staffArray[randomIntFromInterval(13,15)]]
+        floorStaff: [staffArray[randomIntFromInterval(9,11)], staffArray[randomIntFromInterval(12,14)], staffArray[randomIntFromInterval(15,18)]]
 
         })
     };
@@ -41,7 +41,7 @@ const User = new UserModel({
     staff: staffArray,
     customers: customersArray,
     reviews: reviewsArray,
-    email: "test2@asmo.com"
+    email: "test3@asmo.com"
 });
 
 const passwordAndSave = async () => {
