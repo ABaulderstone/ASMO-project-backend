@@ -68,7 +68,6 @@ async function setRoster(req, res, next) {
   const staffDuites = Object.entries(req.body);
   staffDuites.forEach( (element) => {
     const staffMember = req.user.staff.id(element[0]);
-    console.log(staffMember);
     staffMember.duty = element[1];
   });
 
