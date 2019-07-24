@@ -4,7 +4,7 @@ const StasticsSchema = new Schema( {
     date: {
         type: String,
         required: true,
-        unique: true,
+        
     }, 
     kitchen: {
         total: {
@@ -27,6 +27,11 @@ const StasticsSchema = new Schema( {
             min: 1,
             max: 5
         }
+    },
+    owner: {        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+        required: true
     }
 });
 

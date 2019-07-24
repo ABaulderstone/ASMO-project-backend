@@ -4,7 +4,7 @@ async function create(req, res, next) {
    req.user.reviews.push(req.body);
     const review = req.user.reviews[req.user.reviews.length -1];
     const {date, foodRating, serviceRating} = review;
-    stats.createOrUpdate(date, foodRating,serviceRating);
+    stats.createOrUpdate(req.user, date, foodRating,serviceRating);
     try {
       await req.user.save();
     } catch (err) {
