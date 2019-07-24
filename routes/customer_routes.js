@@ -13,8 +13,8 @@ router.post("/", celebrate({
         name: Joi.string().required(),
         phone: Joi.string().regex(RegularExpressions.ausPhoneNumber).replace(/\s/g, ''),
         email: Joi.string().email().required(),
-        dob: Joi.date(),
-        anniversary: Joi.date(),
+        birthday: Joi.string(),
+        anniversary: Joi.string(),
         address: Joi.string(),
     }
 }), CustomerController.create);
