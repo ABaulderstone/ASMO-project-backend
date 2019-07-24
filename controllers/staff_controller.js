@@ -30,8 +30,14 @@ async function update(req, res, next) {
   const { id } = req.params;
   const staffMember = req.user.staff.id(id);
   const { name, avatar } = req.body;
+
+  if (avatar) {
   staffMember.avatar = avatar;
   staffMember.name = name;
+  } else {
+    staffMember.name= name;
+  }
+  
   try {
     await req.user.save();
   } catch (err) {
