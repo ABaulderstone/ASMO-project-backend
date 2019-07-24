@@ -15,10 +15,10 @@ const CustomerSchema = new Schema({
         required: true
     },
 
-    dob: {
-        type: Date,
+    birthday: {
+        type: String,
         required: false,
-        default: new Date()
+        
     },
 
     anniversary: {
