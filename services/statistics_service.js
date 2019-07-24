@@ -18,14 +18,15 @@ const create = (user, date, kitchenRating, floorRating) => {
         total: 1,
         avg: floorRating
     },
-    owner: user
+    owner: user._id
   });
 };
 
 const update = (user,date,kitchenRating, floorRating) => {
   console.log("update", kitchenRating, floorRating);
-  StatisticsModel.findOne({date:date, owner: user}, (err, res) => {
-      if (err) {
+  StatisticsModel.findOne({date:date, owner: user._id}, (err, res) => {
+      console.log(res);
+    if (err) {
           console.log(err);
       }
       const {total:kitchenTotal, avg:kitchenAvg} = res.kitchen;
@@ -48,7 +49,7 @@ const createOrUpdate = async (user, date, kitchenRating, floorRating) => {
   const formattedDate = moment(date)
     .tz("Australia/Sydney")
     .format("DD-MM-YYYY");
-  const documentExists = await StatisticsModel.exists({ date: formattedDate });
+  const documentExists = await StatisticsModel.exists({ date: formattedDate, owner: user._id });
 
   if (documentExists) {
     return update(user, formattedDate, kitchenRating, floorRating);
