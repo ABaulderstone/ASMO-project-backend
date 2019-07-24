@@ -9,6 +9,7 @@ async function create(req, res, next) {
   }
 }
 
+
 function index(req, res) {
   const {duty:role} = req.query;
   const {staff} = req.user;

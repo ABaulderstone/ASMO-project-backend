@@ -59,8 +59,9 @@ passwordAndSave()
         kitchenStaff: [staffArray[randomIntFromInterval(0,2)], staffArray[randomIntFromInterval(3,5)], staffArray[randomIntFromInterval(6,8)]],
         floorStaff: [staffArray[randomIntFromInterval(9,11)], staffArray[randomIntFromInterval(12,14)], staffArray[randomIntFromInterval(15,18)]]
         }
+
         const {foodRating, serviceRating, date} = review;
-        stats.createOrUpdate(user,date, foodRating, serviceRating);
+        stats.createOrUpdate(user, date, foodRating, serviceRating);
         user.reviews.push(review);
         await user.save();
     };
