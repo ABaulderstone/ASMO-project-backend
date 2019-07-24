@@ -27,6 +27,10 @@ const StasticsSchema = new Schema( {
             min: 1,
             max: 5
         }
+    },
+    owner: {        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user"
     }
 });
 
