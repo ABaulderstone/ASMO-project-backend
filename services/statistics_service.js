@@ -31,10 +31,12 @@ const update = (user,date,kitchenRating, floorRating) => {
       }
       const {total:kitchenTotal, avg:kitchenAvg} = res.kitchen;
       const newKitchenAvg = ((kitchenTotal * kitchenAvg) + kitchenRating) / (kitchenTotal + 1);
+      console.log("kitchen", newKitchenAvg);
       res.kitchen.avg = newKitchenAvg;
       res.kitchen.total = kitchenTotal + 1;
       const {total:floorTotal, avg:floorAvg} = res.floor;
       const newFloorAvg = ((floorTotal * floorAvg) + floorRating) / (floorTotal + 1);
+      console.log("floor", newFloorAvg);
       res.floor.avg = newFloorAvg;
       res.floor.total = floorTotal + 1;
       res.save((err, model) => {
@@ -50,7 +52,7 @@ const createOrUpdate = async (user, date, kitchenRating, floorRating) => {
     .tz("Australia/Sydney")
     .format("DD-MM-YYYY");
   const documentExists = await StatisticsModel.exists({ date: formattedDate, owner: user._id });
-
+  console.log(formattedDate, user);
   if (documentExists) {
     return update(user, formattedDate, kitchenRating, floorRating);
   }
