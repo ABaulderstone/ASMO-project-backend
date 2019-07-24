@@ -2,6 +2,7 @@ require("./connect");
 const faker = require("faker");
 const mongoose = require("mongoose");
 const UserModel = require("./models/user_model")
+const stats = require("./../services/statistics_service");
 const staffArray = []
 const customersArray = []
 const reviewsArray = []
@@ -25,35 +26,54 @@ for (let i = 0; i < 50; i++) {
         })
     };
 
+
+  
+
+const User = new UserModel({
+    staff: staffArray,
+    customers: customersArray,
+    reviews: reviewsArray,
+    email: "test@asmo.com"
+});
+
+
+const passwordAndSave = async () => {
+    try {
+        await User.setPassword("hello1");
+        await User.save()
+        return User;
+    } catch (err) {
+        console.log(err);
+    }
+} 
+
+
+passwordAndSave()
+.then( async (user) => {
     for (let i = 0; i < 100; i++) {
-        reviewsArray.push({
+       const review = {
         foodRating: randomIntFromInterval(1,5),
         serviceRating: randomIntFromInterval(1,5),
         comment: faker.lorem.paragraph(),
         date: faker.date.between("2019-6-15", "2019-7-23"),
         kitchenStaff: [staffArray[randomIntFromInterval(0,2)], staffArray[randomIntFromInterval(3,5)], staffArray[randomIntFromInterval(6,8)]],
         floorStaff: [staffArray[randomIntFromInterval(9,11)], staffArray[randomIntFromInterval(12,14)], staffArray[randomIntFromInterval(15,18)]]
-
-        })
+        }
+        const {foodRating, serviceRating, date} = review;
+        stats.createOrUpdate(user,date, foodRating, serviceRating);
+        user.reviews.push(review);
+        await user.save();
     };
+}
 
-const User = new UserModel({
-    staff: staffArray,
-    customers: customersArray,
-    reviews: reviewsArray,
-    email: "test3@asmo.com"
-});
+)
+.catch( err => {
+    console.log(err);
+}
+    
+);
 
-const passwordAndSave = async () => {
-    try {
-        await User.setPassword("hello1");
-        await User.save()
-    } catch (err) {
-        console.log(err);
-    }
-} 
 
-passwordAndSave();
 console.log("one user saved")
 
 
