@@ -9,7 +9,10 @@ async function index(req, res, next) {
             if (err) {
             next(err);
             }
+            if (document.length > 0) {
             return res.send(document);
+            }
+            return res.status(422).json({ _error: "No records for this date" });
         });
     }
 
