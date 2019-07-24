@@ -26,19 +26,6 @@ for (let i = 0; i < 50; i++) {
         })
     };
 
-for (let i = 0; i < 10; i++) {
-    staffArray.push({
-        name: faker.name.findName(),
-        avatar: faker.image.avatar()
-    })
-};
-for (let i = 0; i < 50; i++) {
-        customersArray.push({
-            name: faker.name.findName(),
-            phone: faker.phone.phoneNumber("04########"),
-            email: faker.internet.email()
-        })
-    };
 
   
 
