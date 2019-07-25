@@ -4,10 +4,6 @@ const StaffSchema = require("./staff_schema");
 const CustomerSchema = require("./customer_schema");
 const ReviewSchema = require("./review_schema");
 
-
-// Passport-Local Mongoose will add a username, hash and salt field to store the
-// username, the hashed password and the salt value. Additionally Passport-Local
-// Mongoose adds some methods to your Schema.
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new Schema({
