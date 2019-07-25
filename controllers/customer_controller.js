@@ -1,5 +1,9 @@
+const {sendConfirmMail} = require("./../services/mail_service");
+
 async function create(req, res, next) {
   req.user.customers.push(req.body);
+  const {email, name} = req.body;
+  sendConfirmMail(email, name);
 
   try {
     await req.user.save();
