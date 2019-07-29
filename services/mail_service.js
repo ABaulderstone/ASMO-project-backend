@@ -3,7 +3,6 @@ require("dotenv").config();
 const sgMail = require('@sendgrid/mail');
 const sendConfirmMail = (email, name) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    console.log(process.env.SENDGRID_API_KEY)
     // using Twilio SendGrid's v3 Node.js Library
     // https://github.com/sendgrid/sendgrid-nodejs
     const msg = {
@@ -696,10 +695,24 @@ const sendConfirmMail = (email, name) => {
     };
 
     sgMail.send(msg);
-    console.log("we made it")
+   
 };
+const sendForgottenPasswordEmail = (email, token) => {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const msg = { 
+    to: `${email}`,
+    from: process.env.RESTAURANT_EMAIL,  //contact.landofsmiles@gmail.com look in the .env
+    subject: "Password retrevial email" ,
+    text:  `Hello please follow link to reset password http:localhost:3001/reset_password/${token}`
+    }
+    sgMail.send(msg);
 
-module.exports = { sendConfirmMail };
+}
+
+module.exports = { 
+    sendConfirmMail,
+    sendForgottenPasswordEmail
+ };
 
 
 

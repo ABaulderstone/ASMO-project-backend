@@ -16,6 +16,21 @@ function generateToken(user) {
     return token;
 }
 
+function generateResetToken(user) {
+    const token = JWT.sign({
+        email: user.email
+    },
+    process.env.JWT_SECRET,
+    {
+        subject: user._id.toString(),
+        expiresIn: "1h"
+    }
+);
+return token;
+    
+}
+
 module.exports = {
-    generateToken
+    generateToken,
+    generateResetToken
 }
