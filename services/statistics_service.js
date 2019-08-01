@@ -16,7 +16,6 @@ const createOrUpdateRatings= async (user, date, kitchenRating, floorRating) => {
     .tz("Australia/Sydney")
     .format("DD-MM-YYYY");
   const documentExists = await StatisticsModel.exists({ date: formattedDate, owner: user._id });
-  console.log(formattedDate, user);
   if (documentExists) {
     return updateRating(user, formattedDate, kitchenRating, floorRating);
   }
