@@ -70,7 +70,7 @@ const createOrUpdateStaffRating =  async (user, kitchenStaff, floorStaff, kitche
 
 
 
-  kitchenStaff.forEach(staffMember => {
+  kitchenStaff.forEach( async staffMember => {
     
     const documentExists = await StaffRatingModel.exists({owner: user._id, staffMember: staffMember._id })
         
@@ -80,7 +80,7 @@ const createOrUpdateStaffRating =  async (user, kitchenStaff, floorStaff, kitche
         return createStaffRating(user, staffMember, kitchenRating);
     })
     
-    floorStaff.forEach(staffMember => {
+    floorStaff.forEach( async staffMember => {
       
       const documentExists = await StaffRatingModel.exists({owner: user._id, staffMember: staffMember._id })
           
@@ -115,6 +115,11 @@ const updateStaffRating = (user, staffMember,rating) => {
     const newAvg = calculateNew(total, avg, rating);
     res.avg = newAvg
     res.total += 1;
+    
+    res.save((err, model) => {
+      if (err) { return console.log(err)};
+  });
+
 
   })
 

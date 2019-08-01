@@ -11,8 +11,8 @@ async function create(req, res, next) {
     stats.createOrUpdateRatings(req.user, date, foodRating, serviceRating);
 
     // use statistics service to add to the running averages of our staff members
-
-
+    stats.createOrUpdateStaffRating(req.user, kitchenStaff, floorStaff, foodRating, serviceRating);
+    
     try {
       await req.user.save();
     } catch (err) {

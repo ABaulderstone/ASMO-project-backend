@@ -60,8 +60,9 @@ passwordAndSave()
         floorStaff: [staffArray[randomIntFromInterval(9,11)], staffArray[randomIntFromInterval(12,14)], staffArray[randomIntFromInterval(15,18)]]
         }
 
-        const {foodRating, serviceRating, date} = review;
-        stats.createOrUpdate(user, date, foodRating, serviceRating);
+        const {foodRating, serviceRating, date, kitchenStaff, floorStaff} = review;
+        stats.createOrUpdateRatings(user, date, foodRating, serviceRating);
+        stats.createOrUpdateStaffRating(user, kitchenStaff,floorStaff, foodRating, serviceRating);
         user.reviews.push(review);
         await user.save();
     };
