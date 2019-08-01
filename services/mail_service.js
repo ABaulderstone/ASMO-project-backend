@@ -703,7 +703,7 @@ const sendForgottenPasswordEmail = (email, token) => {
     to: `${email}`,
     from: process.env.RESTAURANT_EMAIL,  //contact.landofsmiles@gmail.com look in the .env
     subject: "Password retrevial email" ,
-    text:  `Hello please follow link to reset password http:localhost:3001/reset_password/${token}`
+    text:  `Hello please follow link to reset password http:localhost:3001/reset_password?token=${token}`
     }
     sgMail.send(msg);
 

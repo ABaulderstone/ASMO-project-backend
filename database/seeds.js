@@ -3,36 +3,34 @@ const faker = require("faker");
 const mongoose = require("mongoose");
 const UserModel = require("./models/user_model")
 const stats = require("./../services/statistics_service");
-const staffArray = []
-const customersArray = []
-const reviewsArray = []
+
 
 function randomIntFromInterval(min,max) // min and max included
 {
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-for (let i = 0; i < 20; i++) {
-    staffArray.push({
-        name: faker.name.findName(),
-        avatar: faker.image.avatar()
-    })
-};
-for (let i = 0; i < 50; i++) {
-        customersArray.push({
-            name: faker.name.findName(),
-            phone: faker.phone.phoneNumber("04########"),
-            email: faker.internet.email()
-        })
-    };
+// for (let i = 0; i < 20; i++) {
+//     staffArray.push({
+//         name: faker.name.findName(),
+//         avatar: faker.image.avatar()
+//     })
+// };
+// for (let i = 0; i < 50; i++) {
+//         customersArray.push({
+//             name: faker.name.findName(),
+//             phone: faker.phone.phoneNumber("04########"),
+//             email: faker.internet.email()
+//         })
+//     };
 
 
   
 
 const User = new UserModel({
-    staff: staffArray,
-    customers: customersArray,
-    reviews: reviewsArray,
+    staff: [],
+    customers: [],
+    reviews: [],
     email: "test@asmo.com"
 });
 
@@ -50,6 +48,31 @@ const passwordAndSave = async () => {
 
 passwordAndSave()
 .then( async (user) => {
+
+    for (let i = 0; i < 20; i++) {
+       const staffMember = {
+            name: faker.name.findName(),
+            avatar: faker.image.avatar()
+        }
+        user.staff.push(staffMember)
+        await user.save();
+        console.log(`${i} staff member created`)
+    };
+
+    for (let i = 0; i < 50; i++) {
+         const customer = {
+            name: faker.name.findName(),
+            phone: faker.phone.phoneNumber("04########"),
+            email: faker.internet.email()
+        }
+        user.customers.push(customer)
+        await user.save();
+        console.log(`${i} customer created`)
+
+    };
+
+    const staffArray = user.staff;
+
     for (let i = 0; i < 100; i++) {
        const review = {
         foodRating: randomIntFromInterval(1,5),
@@ -60,8 +83,9 @@ passwordAndSave()
         floorStaff: [staffArray[randomIntFromInterval(9,11)], staffArray[randomIntFromInterval(12,14)], staffArray[randomIntFromInterval(15,18)]]
         }
 
-        const {foodRating, serviceRating, date} = review;
-        stats.createOrUpdate(user, date, foodRating, serviceRating);
+        const {foodRating, serviceRating, date, kitchenStaff, floorStaff} = review;
+        stats.createOrUpdateRatings(user, date, foodRating, serviceRating);
+        stats.createOrUpdateStaffRating(user, kitchenStaff,floorStaff, foodRating, serviceRating);
         user.reviews.push(review);
         await user.save();
     };
@@ -69,7 +93,7 @@ passwordAndSave()
 
 )
 .catch( err => {
-    console.log(err);
+    console.log("review error");
 }
     
 );

@@ -25,6 +25,7 @@ const options = {
     }
 }
 
+// this effectively creates a local stategy that we can use as middleware to authorise before generating a token
 UserSchema.plugin(passportLocalMongoose, options );
 
 module.exports = UserSchema;
