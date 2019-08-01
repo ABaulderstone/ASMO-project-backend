@@ -1,5 +1,8 @@
 const passport = require("passport");
 
+// using passport.authenticate as middleware here puts .user on the request so we can use it in our controller
+// this lets us keep our controller logic a bit less convoluted.
+
 const localAuthMiddleware = (req, res, next) => {
     const passportMiddleware = passport.authenticate("local", {session:false}, (err, user, info) => {
         if (info){
